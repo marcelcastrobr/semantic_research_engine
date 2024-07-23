@@ -10,3 +10,4 @@ literalai
 nbconvert
 arxiv
 pymupdf
+boto3

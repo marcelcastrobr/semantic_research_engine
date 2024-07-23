@@ -14,6 +14,7 @@ client = LiteralClient()
 
 # This will fetch the champion version, you can also pass a specific version
 prompt = client.api.get_prompt(name="test_prompt")
+print(prompt)
 prompt = prompt.to_langchain_chat_prompt_template()
 prompt.input_variables = ["context", "question"]
 
@@ -35,6 +36,10 @@ async def retrieve_docs():
 
         # ARXIV DOCS PORTION
         arxiv_docs = ArxivLoader(query=arxiv_query, load_max_docs=1).load()
+        #print(f'arxiv_docs:{arxiv_docs}')
+        for doc in arxiv_docs:
+            print(doc.metadata)
+            
         # Prepare arXiv results for display
         arxiv_papers = [
             f"Published: {doc.metadata['Published']} \n Title: {doc.metadata['Title']} \n Authors: {doc.metadata['Authors']} \n Summary: {doc.metadata['Summary'][:50]}... \n---\n"
